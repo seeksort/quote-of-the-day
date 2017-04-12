@@ -10,26 +10,38 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableHighlight,
   Button,
   Alert
 } from 'react-native';
 
-const dailyJoys = [
-  '👾 Dodging them invaders!',
-  '😄 Stuff is chill.',
-  '🍩 Someone bought donuts to the office!'
+const simpsonsQuotes = [
+  {"quote": "I hope I didn't brain my damage.", "speaker": "Homer"},
+  {"quote": "Hi, Super Nintendo Chalmers!", "speaker": "Ralph"},
+  {"quote": "Beer. Now there's a temporary solution.", "speaker": "Homer"},
+  {"quote": "Talk to the audience? Oh, this part is always death.", "speaker": "Krusty the Clown"},
+  {"quote": "This sounds like rock and/or roll!", "speaker": "Rev. Lovejoy"},
+  {"quote": "And I, for one, welcome our insect Overlords...", "speaker": "Kent Brockman"},
+  {"quote": "Absotively Posolutely!", "speaker": "Ned Flanders"},
+  {"quote": "Don't have a cow, man.", "speaker": "Bart"},
+  {"quote": "Thank you for correcting me, Lisa, people are always glad to be corrected.", "speaker": "Homer"},
+  {"quote": "Our differences are only skin deep, but our sames go down to the bone.", "speaker": "Marge"}
 ]
-
-const onButtonPress = () => {
-  getTimeout(this.setState // LEFT OFF HERE
-    ,10000)
-}
 
 export default class TestProj extends Component {
 
-  pickAPhrase = () => { Alert.alert(
-    'Phrase of the Day',
-    dailyJoys[Math.floor(Math.random() * 4)])
+  componentWillMount() {
+    console.log('testing debugger')
+  }
+
+
+  pickAPhrase = () => { 
+    let randQuote = simpsonsQuotes[Math.floor(Math.random() * 10)]
+    Alert.alert(
+      'Phrase of the Day',
+      `\"${randQuote.quote}\" - ${randQuote.speaker} `
+    )
+    randQuote = simpsonsQuotes[Math.floor(Math.random() * 10)]
   }
 
   render() {
@@ -39,14 +51,21 @@ export default class TestProj extends Component {
         </View>
         <View style={styles.subContainer}>
           <Text style={styles.welcome}>
-            FUNTIMES TIMER APP
+            Quotebot
           </Text>
         </View>
-        <View styles={styles.buttonContainer}>
+        <View style={styles.subContainer}>
+          <Text style={styles.instructions}>
+            Click below for a random Simpsons quote
+          </Text>
+        </View> 
+        <View style={styles.buttonContainer}>
           <TouchableHighlight style={styles.wrapper}
             onPress={this.pickAPhrase}>
             <View style={styles.button}>
-              <Text>Click Here</Text>
+              <Text style={styles.buttonText}>
+                Click!
+              </Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -62,7 +81,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   subContainer: {
-    flex: 1,
+    flex: 3,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     backgroundColor: '#C5C5E5',
   },
   buttonContainer: {
@@ -71,19 +92,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9F5FF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 45,
     textAlign: 'center',
     margin: 10,
     color: '#14248A'
   },
-  wrapper: {
-    borderRadius: 5,
-    marginBottom: 5,
+  instructions: {
+    fontSize: 30,
+    textAlign: 'center',
   },
   button: {
-    textAlign: 'center',
     backgroundColor: '#998FC7',
-    padding: 10,
+    padding: 15,
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: 30,
+    color: '#F9F5FF',
   },
 });
 
