@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  Navigator,
-  Button,
   Alert
 } from 'react-native';
 import QuotesList from './quotes-list'
@@ -26,11 +23,7 @@ const simpsonsQuotes = [
 
 export default class Home extends Component {
 
-  componentWillMount() {
-    console.log('testing debugger')
-  }
-
-  pickAPhrase = () => { 
+  pickAPhrase() { 
     let randQuote = simpsonsQuotes[Math.floor(Math.random() * 10)]
     Alert.alert(
       'Phrase of the Day',
@@ -56,23 +49,21 @@ export default class Home extends Component {
           </Text>
         </View> 
         <View style={styles.buttonContainer}>
-          <TouchableHighlight style={styles.wrapper}
+          <TouchableHighlight style={styles.button}
             onPress={this.pickAPhrase}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>
-                Click!
-              </Text>
-            </View>
+            <Text style={styles.buttonText}>
+              Click for a d'oh!
+            </Text>
           </TouchableHighlight>
         </View>
-        <View style={styles.subContainer}>
-
+        <View style={styles.buttonContainer}>
             <TouchableHighlight style={styles.button} onPress={() => {this.props.navigator.push({name: 'QuotesList', index: 1})}}>
               <Text style={styles.buttonText}>
                 Quotes List
               </Text>
             </TouchableHighlight>
-
+        </View>
+        <View style={styles.subContainer}>
         </View>
       </View>
     );
@@ -84,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   subContainer: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     backgroundColor: '#C5C5E5',
@@ -92,7 +83,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#F9F5FF',
   },
   welcome: {
     fontSize: 45,
@@ -111,6 +101,10 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#998FC7',
     padding: 15,
+    borderBottomColor: '#000',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderTopColor: '#000',
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
   buttonText: {
     textAlign: 'center',
