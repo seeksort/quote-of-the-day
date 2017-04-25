@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -15,8 +9,7 @@ import {
   Button,
   Alert
 } from 'react-native';
-import Home from './app/components/Home'
-import QuotesList from './app/components/quotes-list'
+import QuotesList from './quotes-list'
 
 const simpsonsQuotes = [
   {"quote": "I hope I didn't brain my damage.", "speaker": "Homer"},
@@ -31,22 +24,7 @@ const simpsonsQuotes = [
   {"quote": "Our differences are only skin deep, but our sames go down to the bone.", "speaker": "Marge"}
 ]
 
-export default class TestProj extends Component {
-
-  constructor() {
-    super() 
-
-    this.renderScene = this.renderScene.bind(this)
-  }
-
-  renderScene(route, navigator) {
-    if(route.name == 'Home') {
-      return <Home navigator={navigator} {...route.passProps} />
-    }
-    if(route.name == 'QuotesList') {
-      return <QuotesList navigator={navigator} {...route.passProps} />
-    }
-  }
+export default class Home extends Component {
 
   componentWillMount() {
     console.log('testing debugger')
@@ -62,11 +40,41 @@ export default class TestProj extends Component {
   }
 
   render() {
+    console.log('here')
     return (
-      <Navigator 
-        initialRoute={{name: 'Home', index: 0}}
-        renderScene={this.renderScene}
-      />
+      <View style={styles.container}>
+        <View style={styles.subContainer}>
+        </View>
+        <View style={styles.subContainer}>
+          <Text style={styles.welcome}>
+            Quotebot
+          </Text>
+        </View>
+        <View style={styles.subContainer}>
+          <Text style={styles.instructions}>
+            Random Simpsons quotes for okilly dokilly neighborinos.
+          </Text>
+        </View> 
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight style={styles.wrapper}
+            onPress={this.pickAPhrase}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>
+                Click!
+              </Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.subContainer}>
+
+            <TouchableHighlight style={styles.button} onPress={() => {this.props.navigator.push({name: 'QuotesList', index: 1})}}>
+              <Text style={styles.buttonText}>
+                Quotes List
+              </Text>
+            </TouchableHighlight>
+
+        </View>
+      </View>
     );
   }
 }
@@ -112,5 +120,3 @@ const styles = StyleSheet.create({
     color: '#F9F5FF',
   },
 });
-
-AppRegistry.registerComponent('TestProj', () => TestProj);
