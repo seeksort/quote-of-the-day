@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   StyleSheet,
   Text,
   View,
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 45,
-    fontFamily: 'serif',
+    fontFamily: (Platform.OS === 'ios' ? 'Arial' : 'serif'),
     fontWeight: 'bold',
     textAlign: 'center',
     margin: 10,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     fontSize: 25,
-    fontFamily: 'sans-serif-thin',
+    fontFamily: (Platform.OS === 'ios' ? 'Arial' : 'sans-serif-thin'),
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontSize: 30,
-    fontFamily: 'sans-serif',
+    fontFamily: (Platform.OS === 'ios' ? 'Arial' : 'sans-serif'),
     fontWeight: 'bold',
     color: '#F9F5FF',
   },

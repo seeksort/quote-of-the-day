@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   Text, 
   View,
   TouchableHighlight,
@@ -45,7 +46,7 @@ function QuotesList(props) {
 const styles = StyleSheet.create({
   title: {
     fontSize: 35,
-    fontFamily: 'sans-serif-thin',
+    fontFamily: (Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif-thin'),
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#000',
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontSize: 30,
-    fontFamily: 'sans-serif',
+    fontFamily: (Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif'),
     fontWeight: 'bold',
     color: '#F9F5FF',
   },
